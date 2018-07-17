@@ -1,0 +1,27 @@
+package com.newdream.phpwind;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class signup {
+
+	public static void main(String[] args) throws Exception {
+		System.setProperty("webdriver.chrome.driver", 
+"C:\\Program Files (x86)\\Google\\Chrome\\Application\\chromedriver.exe");
+WebDriver driver=new ChromeDriver();
+
+driver.get("http://192.168.85.1/phpwind/");
+driver.manage().window().maximize();
+driver.findElement(By.xpath("//*[@id=\"J_login_form\"]/dl/dd[2]/a")).click();;
+driver.findElement(By.name("username")).sendKeys("Sylvia");
+driver.findElement(By.name("password")).sendKeys("123456");
+driver.findElement(By.name("repassword")).sendKeys("123456");
+driver.findElement(By.name("email")).sendKeys("sylvia@gmail.com");
+Thread.sleep(3000);
+driver.findElement(By.xpath("//*[@id=\"J_register_form\"]/div/dl[5]/dd/button")).click();;
+	
+
+	}
+
+}
