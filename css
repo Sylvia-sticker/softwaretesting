@@ -1,0 +1,24 @@
+package com.newdream.class2;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class css {
+	public static void main(String[] args) throws Exception {
+		System.setProperty("webdriver.chrome.driver", 
+				"C:\\Program Files (x86)\\Google\\Chrome\\Application\\chromedriver.exe");
+WebDriver driver=new ChromeDriver();
+driver.get("http://baidu/com");
+//1.绝对路径定位
+driver.findElement(By.cssSelector("html body div#wrapper div#head div.head_wrapper div#u1_a+a"));
+//2.相对路径定位
+driver.findElement(By.cssSelector("input#kw.s_ipt")).sendKeys(new String[] {"123456"});
+
+driver.findElement(By.cssSelector("a.mnav+a")).click();
+//3.定位下个节点
+//4.使用相对ID选择器来定位元素 id用#号
+//5.使用属性值选择器来定位元素 [属性=值]
+driver.findElement(By.cssSelector("a[name='tj_hao123'][class='manv']")).click();
+	}
+}
