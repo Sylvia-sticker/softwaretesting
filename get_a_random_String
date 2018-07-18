@@ -1,0 +1,92 @@
+单独代码：
+
+package suanfa;
+ 
+import java.util.Random;
+ 
+public class RandomStr {
+ 
+    public static String getRandomStr(int length) {
+        String base = "abcdefghijklmnopqrstuvwxyz0123456789";
+        int randomNum;
+        char randomChar;
+        Random random = new Random();
+        // StringBuffer类型的可以append增加字符
+        StringBuffer str = new StringBuffer();
+ 
+        for (int i = 0; i < length; i++) {
+            // 可生成[0,n)之间的整数，获得随机位置
+            randomNum = random.nextInt(base.length());
+            // 获得随机位置对应的字符
+            randomChar = base.charAt(randomNum);
+            // 组成一个随机字符串
+            str.append(randomChar);
+        }
+        return str.toString();
+    }
+ 
+    public static void main(String[] args) {
+        // TODO Auto-generated method stub
+        System.out.println(getRandomStr(8));
+    }
+ 
+}
+
+
+放在phhwind论坛随机发帖中：
+
+package newdream18;
+
+import java.util.Random;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class random1 {
+
+	public static void main(String[] args) throws Exception {
+		System.setProperty("webdriver.chrome.driver", 
+				"C:\\Program Files (x86)\\Google\\Chrome\\Application\\chromedriver.exe");
+				WebDriver driver=new ChromeDriver();
+
+				driver.get("http://192.168.85.1/phpwind/");
+				driver.manage().window().maximize();
+				
+				
+				driver.findElement(By.xpath("//*[@id=\"J_login_form\"]/dl/dd[2]/a")).click();
+				
+				String str1=getRandomStr(10);
+				System.out.println(str1);
+				
+				driver.findElement(By.name("username")).sendKeys( str1);
+				driver.findElement(By.name("password")).sendKeys("123456");
+				driver.findElement(By.name("repassword")).sendKeys("123456");
+				driver.findElement(By.name("email")).sendKeys("13990896189@163.com");
+				Thread.sleep(3000);
+				driver.findElement(By.xpath("//*[@id=\"J_register_form\"]/div/dl[5]/dd/button")).click();
+
+	}
+
+	
+	public static String getRandomStr(int length) {
+        String base = "abcdefghijklmnopqrstuvwxyz0123456789";
+        int randomNum;
+        char randomChar;
+        Random random = new Random();
+        // StringBuffer类型的可以append增加字符
+        StringBuffer str = new StringBuffer();
+ 
+        for (int i = 0; i < length; i++) {
+            // 可生成[0,n)之间的整数，获得随机位置
+            randomNum = random.nextInt(base.length());
+            // 获得随机位置对应的字符
+            randomChar = base.charAt(randomNum);
+            // 组成一个随机字符串
+            str.append(randomChar); 
+        }
+        return str.toString();
+    }
+}
+
+
