@@ -1,0 +1,52 @@
+package newdream18;
+
+import java.util.Set;
+import java.util.concurrent.TimeUnit;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class windows {
+
+	public static void main(String[] args) throws Exception {
+		System.setProperty("webdriver.chrome.driver", 
+"C:\\Program Files (x86)\\Google\\Chrome\\Application\\chromedriver.exe");
+WebDriver driver=new ChromeDriver();
+driver.get("https://www.baidu.com");
+
+
+driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+
+
+//切句柄操作
+//默认窗口的句柄
+String defaultWindow = driver.getWindowHandle();  //获取当前窗口句柄
+System.out.println(defaultWindow);
+driver.findElement(By.linkText("登录")).click();
+Thread.sleep(3000);
+driver.findElement(By.linkText("立即注册")).click();
+Thread.sleep(3000);
+Set<String> currentWindows = driver.getWindowHandles();//获取所有窗口的句柄 
+
+System.out.println(currentWindows.toString());
+//切句柄
+for (String window : currentWindows) { 
+	if (!window.endsWith(defaultWindow)) {
+	driver = driver.switchTo().window(window); 
+	driver.manage().timeouts() .pageLoadTimeout(60, TimeUnit.SECONDS); 
+	driver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS); 
+	break;
+	}
+	} //通过句柄跳转窗口 
+
+driver.findElement(By.name("userName")).sendKeys("18573245886");
+
+
+
+}
+		
+
+	}
+
+
