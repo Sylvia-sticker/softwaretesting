@@ -1,0 +1,47 @@
+package newdream2;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class frame {
+
+		public static void main(String[] args) throws Exception {
+			System.setProperty("webdriver.chrome.driver", 
+	"C:\\Program Files (x86)\\Google\\Chrome\\Application\\chromedriver.exe");
+	WebDriver driver=new ChromeDriver();
+	driver.get("http://127.0.0.1/phpwind");
+	driver.manage().window().maximize();
+	driver.findElement(By.name("username")).sendKeys(new String [] {"Sylvia"});
+	Thread.sleep(3000);
+	driver.findElement(By.name("password")).sendKeys(new String [] {"123456"});
+	Thread.sleep(3000);
+	driver.findElement(By.id("J_sidebar_login")).click();
+	Thread.sleep(4000);
+	driver.findElement(By.xpath("//*[@id=\"J_head_forum_post\"]/span/span")).click();
+	Thread.sleep(4000);
+	driver.findElement(By.xpath("//*[@id=\"J_forum_list\"]/li")).click();
+	Thread.sleep(4000);
+	driver.findElement(By.xpath("//*[@id=\"J_forum_ul\"]/li[1]")).click();
+	Thread.sleep(4000);
+	driver.findElement(By.xpath("//*[@id=\"J_head_forum_sub\"]")).click();
+	Thread.sleep(4000);
+	
+	driver.findElement(By.xpath("//*[@id=\"J_atc_title\"]")).sendKeys("赵思轶的贴子哈哈哈");
+
+	Thread.sleep(4000);
+	
+  //这里用一个WebElement来定位下面的内容框
+   WebElement fr = driver.findElement(By.xpath("//*[@id=\"mainForm\"]/div/nav/nav/div/div[3]/div[1]/div/div/div[2]/iframe"));
+   //进入内容框
+    driver.switchTo().frame(fr);
+    driver.findElement(By.className("editor_content")).sendKeys("哈哈哈哈哈哈");
+    //出内容框
+driver.switchTo().defaultContent();
+
+    Thread.sleep(4000);
+	driver.findElement(By.name("Submit")).click();
+		
+		}
+
+}
